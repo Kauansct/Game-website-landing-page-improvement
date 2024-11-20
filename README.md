@@ -48,3 +48,7 @@ Essa página foi aprimorada para incluir **melhorias semânticas**, **acessibili
 1. **Clone este repositório:**
    ```bash
    git clone https://github.com/seuusuario/nome-do-repositorio.git
+
+## Link do website
+
+- [Website Nintendo](https://game-website-landing-page-improvement.netlify.app/)
