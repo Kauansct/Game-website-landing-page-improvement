@@ -1,0 +1,994 @@
+/*fontes*/
+
+@font-face {
+    font-family: 'marioFont';
+    src: url('fonts/SuperMario256.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'pokemonFont';
+    src: url('fonts/Pokemon\ Solid.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'zeldaFont';
+    src: url('fonts/Triforce.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Remove a margem e o preenchimento padrão de todos os elementos e define o modelo de box-sizing como border-box. */
+
+:root {
+    --primary: #ff0000;
+}
+/* Define a cor vermelha como uma variável CSS chamada --primary. */
+
+body {
+    position: relative;
+    background-color: #000000;
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+/* Define o corpo da página com posição relativa, cor de fundo preta, usa a fonte 'Roboto', ocupa 100% da largura e tem altura mínima de 100vh, com overflow oculto. */
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 100px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    z-index: 20;
+    backdrop-filter: blur(10px);
+}
+/* O cabeçalho está posicionado de forma absoluta no topo e à esquerda, ocupando 100% da largura, com um layout flexível, espaçamento interno de 20px nas laterais, borda inferior semitransparente e z-index 20. */
+
+.logo img {
+    max-width: 60px;
+    max-height: 60px;
+    filter: invert(1);
+    transition: transform 0.5s ease;
+}
+/* Define a imagem do logotipo com largura e altura máximas de 60px, aplica um filtro de inversão de cores e uma transição suave de 0,5s para transformações. */
+
+.logo:hover img {
+    transform: rotate(540deg) scale(1.2);
+    transition: transform 0.5s ease;
+}
+/* Ao passar o mouse sobre a logo, ela gira 540 graus e aumenta 1.2x de tamanho, com uma transição suave de 0,5s. */
+
+.nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+/* A navegação usa um layout flexível, ocupando 100% da largura, com os itens distribuídos de maneira uniforme. */
+
+.nav li {
+    list-style-type: none;
+}
+/* Remove os marcadores das listas de navegação. */
+
+.nav li a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 10px;
+}
+/* Os links na navegação são brancos, sem sublinhado, com texto em maiúsculas, peso de fonte leve (300), espaçamento entre letras de 1px, e um cursor de ponteiro. */
+
+.nav li:hover a {
+    color: var(--primary);
+}
+/* Ao passar o mouse sobre os links de navegação, a cor muda para a cor primária definida (--primary). */
+
+.inputs-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 500px;
+}
+
+.search {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    transition: 0.5s;
+}
+/* A barra de busca tem uma largura inicial de 130px, altura de 40px, e uma transição de 0,5s. */
+
+.search:hover {
+    width: 300px;
+    transform: translateX(40px);
+}
+/* Quando o usuário passa o mouse sobre a barra de busca, ela se expande para 300px de largura. */
+
+.search input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    border-radius: 4px;
+    padding: 0 10px 0 5px;
+}
+/* O campo de texto da busca é posicionado absolutamente dentro do contêiner, ocupa 100% da largura e altura, tem texto branco, fundo transparente, borda semitransparente, bordas arredondadas e espaçamento interno. */
+
+.search input::placeholder {
+    color: #ffffff;
+    text-transform: uppercase;
+    transform: translateX(5px);
+    font-weight: 300;
+}
+/* O placeholder do campo de busca é branco, em maiúsculas, com espaçamento à esquerda e peso de fonte leve. */
+
+.login {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    transition: 0.5s;
+}
+/* A barra de busca tem uma largura inicial de 130px, altura de 40px, e uma transição de 0,5s. */
+
+.login:hover {
+    width: 250px;
+}
+/* Quando o usuário passa o mouse sobre a barra de busca, ela se expande para 300px de largura. */
+
+.login input {
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: none;
+    outline: none;
+    border-radius: 0px 4px 4px 0px;
+    padding: 0 10px 0 5px;
+}
+/* O campo de texto da busca é posicionado absolutamente dentro do contêiner, ocupa 100% da largura e altura, tem texto branco, fundo transparente, borda semitransparente, bordas arredondadas e espaçamento interno. */
+
+.login button {
+    position: relative;
+    width: 60px;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: none;
+    outline: none;
+    border-radius: 4px 0px 0px 4px;
+    cursor: pointer;
+    color: #ffffff;
+    background: transparent;
+    text-transform: uppercase;
+}
+/* O botão de login tem uma largura de 60px, altura igual ao contêiner, borda semitransparente, bordas arredondadas, cursor de ponteiro, texto branco, fundo transparente e texto em maiúsculas. */
+
+#logoutButton{
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+/* O botão de logout tem uma borda semitransparente e bordas arredondadas. */
+
+#userEmail{
+    color: #ffffff;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 10px 10px 0 5px;   
+}
+/* O texto do e-mail do usuário é posicionado absolutamente dentro do contêiner, ocupa 100% da largura e altura, tem texto branco e espaçamento interno. */
+
+.swiper {
+    width: 100%;
+    height: 100vh;
+}
+/* O swiper (carrossel) ocupa 100% da largura e altura total da tela. */
+
+.swiper .swiper-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+/* O contêiner dos slides no swiper tem largura e altura totais, sem margens ou preenchimentos. */
+
+.swiper .swiper-wrapper .swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+/* Cada slide no swiper ocupa toda a largura e altura disponíveis. */
+
+.swiper .swiper-wrapper .swiper-slide::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+/* Adiciona uma camada semitransparente preta sobre cada slide. */
+
+.swiper .swiper-wrapper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+/* As imagens dentro dos slides são ajustadas para cobrir toda a área e são centralizadas. */
+
+.swiper .swiper-wrapper .swiper-slide .banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+/* O banner dentro dos slides ocupa 100% da largura, tem altura mínima de 100vh, usa layout flexível para centralizar seu conteúdo horizontal e verticalmente. */
+
+.swiper .swiper-wrapper .swiper-slide .banner img {
+    position: absolute;
+    max-width: 700px;
+    transform: translateX(-55%);
+    z-index: 1;
+    left: 50%;
+}
+/* As imagens dentro do banner são centralizadas horizontalmente e têm largura máxima de 700px. */
+
+.swiper .swiper-wrapper .swiper-slide .banner .main-character-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+/* O contêiner principal do personagem principal dentro do banner usa layout flexível para centralizar seu conteúdo horizontal e verticalmente. */
+
+.swiper .swiper-button-prev {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 25%;
+    top: 50%;
+    z-index: 100;
+    border-radius: 50%;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    border: solid 1px rgb(255, 255, 255, 0.5);
+}
+/* O botão anterior do swiper está posicionado com largura e altura de 60px, no centro vertical e com fundo vermelho. */
+
+.swiper .swiper-button-next {
+    position: absolute;
+    left: 65%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    z-index: 100;
+    border-radius: 50%;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    border: solid 1px rgb(255, 255, 255, 0.5);
+}
+/* O botão próximo do swiper está posicionado com largura e altura de 60px, no centro vertical e com fundo azul. */
+
+.swiper .swiper-button-next:hover,
+.swiper .swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+/* Quando o mouse passa sobre os botões, eles ficam com fundo cinza escuro. */
+
+.swiper .swiper-button-next::after,
+.swiper .swiper-button-prev::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    width: 60px;
+    height: 60px;
+    line-height: 0;
+    background: transparent;
+    border-radius: 50%;
+    color: #fff;
+}
+/* Os ícones dentro dos botões anterior e próximo estão centralizados, com cor semitransparente, largura e altura de 60px, e bordas arredondadas. */
+
+.right {
+    max-height: 70vh;
+}
+/* Define a altura máxima de 70% da viewport para os elementos com a classe 'right'. */
+
+.banner img {
+    width: 50%;
+    height: 50%;
+}
+/* As imagens no banner têm largura e altura máximas de 790px e ocupam 50% do contêiner. */
+
+.swiper .swiper-wrapper .swiper-slide .banner .left {
+    position: relative;
+    right: 15vh;
+    display: flex;
+    flex-direction: column;
+    top: 50px;
+    z-index: 100;
+}
+/* O conteúdo à esquerda do banner é exibido em uma coluna flexível, espaçado uniformemente. */
+
+.banner .left .features {
+    max-width: 400px;
+    margin-bottom: 100px;
+}
+/* A seção de recursos à esquerda tem largura máxima de 400px e uma margem inferior de 100px. */
+
+.info-product{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    transition: 0.2s ease-in-out;
+}
+/* O contêiner da informação do produto usa layout flexível para alinhar horizontalmente o conteúdo e tem bordas arredondadas, largura e altura de 65px. */
+
+.pricing .info-product{
+    background: var(--primary);
+}
+/* A seção de preços tem um fundo vermelho. */
+
+.pricing .info-product:hover{
+    background: #c90000;
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px #c90000);
+}
+/* Quando o mouse passa sobre o contêiner da informação do produto, ele fica vermelho e com sombra. */
+
+.rating .info-product{
+    background: #fff; 
+}
+/* A seção de avaliação tem um fundo branco. */
+
+.banner .left .features .rating {
+    color: #ffffff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 25px;
+}
+/* A seção de avaliação à esquerda tem texto branco, usa layout flexível para alinhar horizontalmente o conteúdo e tem uma margem inferior de 25px. */
+
+.banner .left .features .rating .score {
+    padding: 15px;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--primary);
+}
+/* A nota de avaliação (score) tem padding de 15px, fonte grande (2rem), cor vermelha e fundo branco. */
+
+.banner .left .features .content {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+/* O conteúdo de recursos tem uma margem à esquerda de 20px e é exibido em uma coluna flexível. */
+
+.banner .left .features .pricing {
+    color: #ffffff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+/* A seção de preços é exibida com texto branco e layout flexível para alinhamento horizontal. */
+
+.banner .left .features .pricing a{
+    padding: 15px;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+}
+/* Os links de preços tem padding de 15px, fonte grande (2rem), cor vermelha e fundo branco. */
+
+#buy-icon{
+    width: 35px;
+    height: 35px;
+}
+/* O icone de compra tem largura e altura de 35px. */
+
+.banner .left .features .content h4 {
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+/* O título 'h4' dentro do conteúdo tem cor branca, tamanho de fonte 1.5em, peso de fonte 400, espaçamento entre letras de 2px e é exibido em maiúsculas. */
+
+.banner .left .features .content span {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+/* O texto adicional no conteúdo tem tamanho de fonte 0.7em, é exibido em maiúsculas e tem peso de fonte 400. */
+
+.banner .left .features .content .subtitle {
+    color: var(--primary);
+}
+/* O subtítulo dentro do conteúdo de recursos tem a cor definida pela variável --primary (vermelha). */
+
+.banner h1 {
+    color: #ffffff;
+    font-size: 5em;
+    letter-spacing: 5px;
+    line-height: 1em;
+    font-weight: 400;
+    z-index: 10;
+    text-transform: uppercase;
+}
+/* O título 'h1' do banner tem cor branca, fonte grande (5em), espaçamento entre letras de 5px, altura da linha 0.9, z-index 10 e é exibido em maiúsculas. */
+
+/*Adicionando as fontes personalizadas nos titulos*/
+#slide-1 .banner h1, #slide-1 .banner .right h2 {
+    font-family: 'marioFont';
+}
+
+#slide-2 .banner h1 {
+    font-family: 'pokemonFont';
+    font-size: 4em;
+}
+
+#slide-2 .banner .right h2 {
+    font-family: 'pokemonFont';
+}
+
+#slide-3 .banner h1, #slide-3 .banner .right h2 {
+    font-family: 'zeldaFont';
+}
+
+.links-area{
+    height: 130px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+/* A area de links tem altura de 130px, largura de 100% e usa layout flexível para alinhar verticalmente o conteúdo. */
+
+.links{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+/* A seção de links tem largura de 100% e usa layout flexível para alinhar horizontalmente. */
+
+.links li a{
+    cursor: pointer;
+}
+/* Os links dentro da seção de links tem cursor de ponteiro. */
+
+.links li{
+    list-style: none;
+}
+
+.icon-links{
+    width: 35px !important;
+    height: 35px !important;
+    position: static !important;
+}
+/* Os icones dos links tem largura e altura de 35px e posicao estatica. */
+
+.icon-links:hover{
+    filter: invert(80%) sepia(100%) saturate(50000%) hue-rotate(0deg) brightness(100%) drop-shadow(0 0 3px #c90000);;
+}
+/* Os icones dos links ao passar o mouse em cima tem efeito de sombra e cor vermelha. */
+
+
+.swiper .swiper-wrapper .swiper-slide .banner .right {
+    position: relative;
+    max-width: 450px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    z-index: 100;
+    left: 22vh;
+}
+/* A seção à direita no banner é posicionada de forma relativa, ocupa 100vh de altura, tem largura máxima de 450px, layout em coluna e alinhamento à direita. */
+
+.banner .right .description {
+    padding: 30px 60px 0 0;
+    color: #ffffff;
+}
+/* A descrição à direita tem padding no topo e na direita e cor branca. */
+
+.banner .right .description li {
+    list-style-image: url(images/icons/verifique-o-circulo\ \(1\).png);
+}
+/* Remove o estilo de lista dos itens de descrição à direita. */
+
+.banner .right .description p {
+    margin: 5px 0 25px 30px;
+    font-weight: 300;
+}
+/* Os parágrafos na descrição têm margem superior de 5px e margem inferior de 25px, com peso de fonte leve (300). */
+
+.banner .right .description img{
+    width: 20px;
+    height: 20px;
+}
+/* Os icones na descrição à direita tem largura e altura de 20px. */
+
+.banner .right h2 {
+    color: #ffffff;
+    font-size: 3.5em;
+    line-height: 1em;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+/* O título 'h2' à direita tem cor branca, fonte grande (3.5em), linha de altura 1em, peso de fonte 400, alinhamento à direita e margem inferior de 20px, e é exibido em maiúsculas. */
+
+.banner .right .description h4 {
+    display: inline-block;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    transform: translateY(-3px);
+}
+/* O título 'h4' da descrição à direita tem tamanho de fonte 1.3em, maiúsculas, peso 400, espaçamento entre letras de 1px, e é exibido como bloco inline. */
+
+
+.banner .right iframe {
+    max-width: 430px;
+    max-height: 220px;
+}
+/* O iframe à direita do banner tem largura máxima de 450px e altura máxima de 250px. */
+
+/* modal */
+.modal{
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+/* O modal é posicionado de forma absoluta, ocupa 100% da largura e 100% da altura, tem fundo transparente, overflow hidden e usa layout flexível para alinhar horizontalmente e verticalmente. */
+
+.modal::backdrop{
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+/* O backdrop do modal tem fundo transparente com efeito de blur. */
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    color: #fff;
+    border-radius: 15px;
+    background-color: #201f1f;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.7);
+}
+/* O formulário de contato é exibido em uma coluna flexível, alinhado verticalmente e com padding de 50px, cor branca, arredondado e sombreado. */
+
+.contact-form h2{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 30px;
+    font-family: 'marioFont';
+    letter-spacing: 0.1em;
+    font-weight: 100;
+}
+/* O cabeçalho do formulário de contato tem posição relativa, layout flexível para alinhar horizontalmente e bottom de 30px, fonte 'marioFont', espaçamento entre letras de 0.1em e peso 100. */
+
+#close-modal-btn{
+    position: relative;
+    bottom: 35px;
+    width: 108%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+/* O botão de fechar modal tem posição relativa, bottom de 35px, largura de 108%, layout flexível para alinhar horizontalmente e fundo transparente, sem borda e sem outline. */
+
+#close-modal-btn img:hover{
+    filter: invert(80%) sepia(30%) saturate(50000%) hue-rotate(0deg) brightness(100%) drop-shadow(0 0 3px #c90000);
+}
+/* Ao passar o mouse sobre a imagem do botão de fechar modal, ela recebe um filtro de inversão de cores, uma saturação de 50000%, e um desfoque de 3px. */
+
+#close-modal-btn img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+/* A imagem do botão de fechar modal tem largura e altura de 20px e cursor de ponteiro. */
+
+.contact-form input{
+    margin: 10px;
+    border: none;
+    background-color: #201f1f;    
+    border-bottom: solid #fff;
+    border-width: 0.5px;
+    outline: none;
+    color: #e9e7e7;
+}
+/* Os inputs do formulário de contato tem margem de 10px, sem borda, fundo de cor #201f1f, borda inferior de cor #fff, largura da borda de 0,5px, sem outline e cor de texto #e9e7e7. */
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+/* Remove o botão de incremento e decremento de input de tipo number no Chrome, Safari e Opera. */
+
+#comment{
+    background-color: #fff;
+    border-radius: 5px;
+    color: #131212;
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    height: 50px;
+    min-height: 100px;
+    max-height: 250px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+/* O input de comentario tem fundo de cor branca, arredondado, cor de texto #131212, largura de 100%, altura de 50px, espaçamento inferior de 10px e superior de 10px. */
+
+.submit-area{
+    display: flex;
+    justify-content: center;
+}
+/* O area de envio tem layout flexível para alinhar horizontalmente. */
+
+#submit-btn{
+    display: flex;
+    padding: 17px;
+    margin: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(226, 14, 14);
+    font-family: 'marioFont';
+    font-weight: 100;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    width: 160px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    cursor: pointer;   
+}
+
+#submit-btn:hover{
+    box-shadow: 2px 10px 20px rgba(0, 0, 0, 1);
+}
+/* Ao passar o mouse sobre o botão de envio, ele recebe um sombreado. */
+
+/* placeholders do formulario de contato caso houver erro */
+#name::placeholder {
+    color: rgb(240, 71, 71);
+    background: rgb(231, 181, 181);
+}
+
+#email::placeholder {
+    color: rgb(240, 71, 71);
+    background: rgb(231, 181, 181);
+}
+
+#phone::placeholder {
+    color: rgb(240, 71, 71);
+    background: rgb(231, 181, 181);
+}
+
+.required-area{
+    color: rgb(240, 71, 71);
+}
+/* cor vermelha do span dos campos obrigatorios */
+
+/* responsividade */    
+@media (max-width: 1130px) {
+
+    body{
+        overflow: visible !important;
+    }
+    /* Remove a barra de rolagem horizontal */
+
+    .swiper{
+        overflow-y: visible !important;
+        height: 271vh;
+    }
+    /* Remove a barra de rolagem vertical */
+
+    /* Navegador */
+    header {
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+    /* A header tem layout flexível para alinhar verticalmente e horizontalmente. */
+
+    .inputs-area{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        width: 70%;       
+    }
+    /* Os inputs de pesquisa e login tem layout flexível para alinhar horizontalmente. */
+
+    .logo img {
+        max-width: 40px;
+        max-height: 40px;
+    }
+    /* Define a imagem do logotipo com largura e altura máximas de 40px, aplica um filtro de inversão de cores e uma transição suave de 0,5s para transformações. */
+
+    .nav {
+        flex-direction: row;
+    }
+    /* A navegação usa um layout flexível para alinhar horizontalmente. */
+
+    .nav li {
+        margin: 5px 0;
+    }
+    /* Os itens da navegação tem margens de 5px em cima e em baixo. */
+
+    .nav li a{
+        font-size: 14px;
+    }
+    /* Os links de navegação tem tamanho de fonte de 14px. */
+
+    .search,
+    .login {
+        width: 100%;
+        height: 30px;
+        max-width: none;
+    }
+    /* Os inputs de pesquisa e login tem largura de 100%, altura de 30px, largura máxima none. */
+
+    .search:hover, .login:hover {
+        width: 100%;
+        transform: none;
+    }
+    /* Quando o usuário passa o mouse sobre a barra de pesquisa ou o botão de login, eles se expandem para 100% de largura e não se movem. */
+
+    #gameInput, #loginButton{
+        font-size: 12px;
+    }
+    /* Os inputs de pesquisa e login tem tamanho de fonte de 12px. */
+
+    #loginInput{
+        width: 70%;
+    }
+    /* O campo de texto do login tem largura de 70%. */
+
+    /* Botões do Carrosel */
+    .swiper .swiper-button-next{
+        left: 90%;
+        top: 60%;
+    }
+
+    .swiper .swiper-button-prev {
+        left: 25%;
+        top: 60%;
+    }
+
+    .swiper .swiper-button-next::after,
+    .swiper .swiper-button-prev::after {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    /* Banner */
+    .swiper .swiper-wrapper .swiper-slide .banner {
+        display: flex;
+        flex-direction: column-reverse; 
+        justify-content: center !important;
+        width: 100%;
+    }
+    /* O banner é exibido em uma coluna-reversa, alinhado verticalmente. */
+
+    .swiper .swiper-wrapper .swiper-slide .banner .right {
+        position: relative;
+        max-width: 100%;
+        height: 100%;
+        left: 0vh;
+        top: 25vh;
+        align-items: center;
+    }
+    /* O banner da direita tem largura máxima de 100%, alinhado verticalmente. */
+
+    .swiper .swiper-wrapper .swiper-slide .banner .left {
+        position: absolute;
+        width: 85%;
+        transform: translateY(115vh);
+    }
+    /* O banner da esquerda tem largura de 85% e transformação para translateY(115vh). */
+
+    .links-area{
+        width: 350px;
+    }
+    /* A area de links tem largura de 350px. */
+
+    .banner h1 {
+        font-size: 4em;
+    }
+
+    .banner .left .features, .banner .right .description {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .swiper .swiper-wrapper .swiper-slide .banner .main-character-area{
+        position: relative;
+        justify-content: flex-end;
+        top: 50vh;
+    }
+    /* A area do personagem principal é exibida em uma coluna-reversa, alinhada verticalmente. */
+
+    .banner .main-character{
+        object-fit: contain;
+        position: relative !important;
+        width: 70% !important;
+        height: 70% !important;
+        left: 55vh !important;
+        margin-right: 30px;
+    }
+    /* O personagem principal tem largura e altura de 70%, alinhado verticalmente. */
+
+    .banner .right .trailer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8em;
+    }
+    /* O trailer é exibido em uma coluna, alinhado verticalmente. */
+
+    .banner .right iframe {
+        max-width: 70%;
+        height: 300px;
+    }
+    /* O iframe do trailer tem largura máxima de 70% e altura de 300px. */
+}
+
+@media (max-width: 650px){
+    .swiper{
+        height: 222vh;
+    }
+
+    /* Navegador */
+    .inputs-area{
+        flex-direction: column;
+    }
+    /* Os inputs de pesquisa e login tem largura de 100%, altura de 30px, largura máxima none. */
+
+    #loginInput{
+        width: 65%;
+    }
+    /* O campo de texto do login tem largura de 70%. */
+
+    .nav li a{
+        display: flex;
+        justify-content: center;
+        font-size: 12px;
+    }
+    /* Os links de navegação tem tamanho de fonte de 12px. */
+
+    /* Banner */
+    .banner .right .description {
+        margin-top: 10vh;
+    }
+
+    .banner .left .features, .banner .right .description p {
+        font-size: 0.8em;
+    }
+    
+    .banner .left .features .rating .info-product, .banner .left .features .pricing .info-product{
+        width: 45px;
+        height: 45px;
+    }
+    /* Os icones quadrados de avaliação e preços tem largura e altura de 45px. */
+
+    #buy-icon{
+        width: 20px;
+        height: 20px;
+    }
+    /* O icone dentro do quadrado de compra tem largura e altura de 20px. */
+
+    .banner .left .features .rating .score{
+        font-size: 1.2rem;
+    }
+
+    .banner h1 {
+        font-size: 3em;
+    }
+
+    .icon-links{
+        width: 27px !important;
+        height: 27px !important;
+    }
+    /* Os icones de rede social e contato tem largura e altura de 27px. */
+
+    /* Botões do Carrosel */
+    .swiper .swiper-button-next{
+        left: 25%;
+        top: 71%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .swiper .swiper-button-prev {
+        left: 5%;
+        top: 71%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .swiper .swiper-button-next::after,
+    .swiper .swiper-button-prev::after {
+        width: 40px;
+        height: 40px;
+    }
+
+    #close-modal-btn{
+        bottom: 20px;
+    }    
+}
+
+@media (max-width: 559px){
+    .swiper .swiper-wrapper .swiper-slide .banner .left{
+        right: 10vh;
+    }
+
+    .links-area{
+        height: 70px;
+    }
+
+    .swiper .swiper-wrapper .swiper-slide .banner .left {
+        transform: translateY(120vh);
+    }
+
+
+    .swiper .swiper-wrapper .swiper-slide .banner .main-character-area{
+        top: 60vh;
+    }
+}
